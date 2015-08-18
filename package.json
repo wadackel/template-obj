@@ -1,7 +1,7 @@
 {
   "name": "template-obj",
   "version": "0.0.1",
-  "description": "__TODO__",
+  "description": "template strings in the javascript object.",
   "keywords": [
     "string",
     "tree",
