@@ -5,7 +5,8 @@ template-obj
 [![npm version](https://img.shields.io/npm/v/template-obj.svg?style=flat-square)](http://badge.fury.io/js/template-obj)
 [![Bower](https://img.shields.io/bower/v/template-obj.svg?style=flat-square)](http://bower.io/search/?q=template-obj)
 
-template strings in the javascript object.
+template strings in the javascript object.  
+lightweight utility module. (production file is 1.37KB)
 
 
 
@@ -17,10 +18,16 @@ template strings in the javascript object.
 $ npm install template-obj
 ```
 
-### bower
+### Bower
 
 ```
 $ bower install template-obj
+```
+
+### CommonJS
+
+```
+var templateObj = require("template-obj");
 ```
 
 ### Basic
@@ -28,9 +35,8 @@ $ bower install template-obj
 1. Download the [template-obj.min.js](https://raw.githubusercontent.com/tsuyoshiwada/template-obj/master/template-obj.min.js).  
 2. Load it in the script tag.
 
-
 ```html
-<script type="text/javascript" src="template-obj.js"></script>
+<script type="text/javascript" src="template-obj.min.js"></script>
 ```
 
 

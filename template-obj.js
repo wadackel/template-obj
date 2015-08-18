@@ -17,6 +17,7 @@
     return objectPrototype.hasOwnProperty.call(obj, key);
   }
 
+
   function is(type, obj){
     var clas = objectPrototype.toString.call(obj);
 
