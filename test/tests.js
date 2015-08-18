@@ -57,7 +57,16 @@ QUnit.test("should be parsed.", function(assert){
         range     : "${range.min} - ${range.max}"
       },
       defaultEvent: "${events.click}",
-      sample: "${events.hoge}"
+      values: [
+        "value1",
+        "value2",
+        "value3"
+      ],
+      nestValues: [
+        ["innerValue"]
+      ],
+      sample: "${events.hoge}",
+      array: "values[0] == ${values[0]}, nestValues[0][0] == ${nestValues[0][0]}"
     }),
     // expected
     {
@@ -78,7 +87,16 @@ QUnit.test("should be parsed.", function(assert){
         range     : "50 - 1200"
       },
       defaultEvent: "click.app",
-      sample: "${events.hoge}"
+      values: [
+        "value1",
+        "value2",
+        "value3"
+      ],
+      nestValues: [
+        ["innerValue"]
+      ],
+      sample: "${events.hoge}",
+      array: "values[0] == value1, nestValues[0][0] == innerValue"
     },
     "nest"
   );

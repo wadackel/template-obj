@@ -17,27 +17,32 @@
     return objectPrototype.hasOwnProperty.call(obj, key);
   }
 
+  function is(type, obj){
+    var clas = objectPrototype.toString.call(obj);
 
-  function isArray(val){
-    return objectPrototype.toString.call(val) === "[object Array]";
-  }
+    if( type === "array" ){
+      return clas === "[object Array]";
 
+    }else if( type === "object" ){
+      clas = typeof obj;
+      return clas === "function" || clas === "object" && !!obj && !is("array", obj);
 
-  function isObject(obj){
-    var type = typeof obj;
-    return type === "function" || type === "object" && !!obj && !isArray(obj);
+    }else{
+      clas = clas.slice(8, -1).toLowerCase();
+      return obj !== undefined && obj != null && clas === type;
+    }
   }
 
 
   function clone(obj){
-    var _isArray = isArray(obj),
-        _isObject = isObject(obj);
+    var _isArray = is("array", obj),
+        _isObject = is("object", obj);
     if( !_isArray && !_isObject ) return undefined;
     var result = _isArray ? [] : {}, key, val;
     for( key in obj ){
       if( !hasProp(obj, key) ) continue;
       val = obj[key];
-      if( isArray(val) || isObject(val) ) val = clone(val);
+      if( is("array", val) || is("object", val) ) val = clone(val);
       result[key] = val;
     }
     return result;
@@ -47,12 +52,12 @@
   function each(obj, iterate, context){
     if( obj === null ) return obj;
     context = context || obj;
-    if( isObject(obj) ){
+    if( is("object", obj) ){
       for( var key in obj ){
         if( !hasProp(obj, key) ) continue;
         if( iterate.call(context, obj[key], key) === false ) break;
       }
-    }else if( isArray(obj) ){
+    }else if( is("array", obj) ){
       var i, length = obj.length;
       for( i = 0; i < length; i++ ){
         if( iterate.call(context, obj[i], i) === false ) break;
@@ -62,8 +67,11 @@
   }
 
 
-  function getObjValue(obj, key){
+  function getValue(obj, key){
     if( hasProp(obj, key) ) return obj[key];
+
+    // key[index] => key.index
+    key = key.split("[").join(".").split("]").join("");
 
     var keys = key.split("."),
         results = clone(obj);
@@ -82,9 +90,9 @@
 
 
   function template(str, values){
-    var val;
+    if( !is("string", str) ) return str;
     return str.replace(/\$\{(.*?)\}/g, function(all, key){
-      val = getObjValue(values, key);
+      var val = getValue(values, key);
       return val != null ? val : all;
     });
   }
@@ -93,10 +101,10 @@
   function templateObj(obj, rootObj){
     var results = clone(obj);
     
-    rootObj = isObject(rootObj) ? rootObj : results;
+    rootObj = is("object", rootObj) ? rootObj : results;
 
     each(results, function(val, key){
-      if( isObject(val) ){
+      if( is("object", val) ){
         results[key] = templateObj(val, rootObj);
       }else{
         results[key] = template(val, rootObj);

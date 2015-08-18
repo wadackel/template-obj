@@ -57,7 +57,9 @@ console.log(obj);
 
 ### Nested value
 
-Access to the nested value using the dot syntax.
+Access to the nested value using the dot syntax, and bracket notation.
+
+@TODO
 
 ```javascript
 var params = templateObj({
