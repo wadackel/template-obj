@@ -1,0 +1,47 @@
+{
+  "name": "template-obj",
+  "version": "0.0.1",
+  "description": "__TODO__",
+  "keywords": [
+    "string",
+    "tree",
+    "object",
+    "util",
+    "server",
+    "client",
+    "browser"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsuyoshiwada/template-obj.git"
+  },
+  "main": "template-obj.js",
+  "author": {
+    "name": "tsuyoshiwada",
+    "url": "https://github.com/tsuyoshiwada"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsuyoshiwada/template-obj/issues"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "homepage": "https://github.com/tsuyoshiwada/template-obj",
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-qunit": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jshint-stylish": "^2.0.1"
+  },
+  "files": [
+    "template-obj.js",
+    "template-obj.min.js",
+    "LICENSE"
+  ]
+}

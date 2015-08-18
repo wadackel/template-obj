@@ -1,0 +1,31 @@
+{
+  "name": "template-obj",
+  "main": "template-obj.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tsuyoshiwada/template-obj",
+  "authors": [
+    "tsuyoshiwada"
+  ],
+  "description": "__TODO__",
+  "keywords": [
+    "string",
+    "object",
+    "util",
+    "server",
+    "client",
+    "browser"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    ".DS_Store",
+    ".gitignore",
+    ".jshintrc",
+    ".travis.yml",
+    "package.json",
+    "gulpfile.coffee",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
