@@ -59,8 +59,6 @@ console.log(obj);
 
 Access to the nested value using the dot syntax, and bracket notation.
 
-@TODO
-
 ```javascript
 var params = templateObj({
   ns: "app",
@@ -74,7 +72,12 @@ var params = templateObj({
     mouseenter: "${events.mouseenter} was triggered.",
     mouseleave: "${events.mouseleave} was triggered."
   },
-  defaultEvent: "${events.click}"
+  defaultEvent: "${events.click}",
+  loaders: [
+    "coffee-loader",
+    "babel-loader"
+  ],
+  loader: "${loaders[0]} & ${loaders[1]}"
 });
 
 console.log(params);
@@ -91,7 +94,12 @@ console.log(params);
     mouseenter: "mouseenter.app was triggered.",
     mouseleave: "mouseleave.app was triggered."
   },
-  defaultEvent: "click.app"
+  defaultEvent: "click.app",
+  loaders: [
+    "coffee-loader",
+    "babel-loader"
+  ],
+  loader: "coffee-loader & babel-loader"
 }
 */
 ```
