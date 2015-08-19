@@ -4,6 +4,7 @@ template-obj
 [![Build Status](http://img.shields.io/travis/tsuyoshiwada/template-obj.svg?style=flat-square)](https://travis-ci.org/tsuyoshiwada/template-obj)
 [![npm version](https://img.shields.io/npm/v/template-obj.svg?style=flat-square)](http://badge.fury.io/js/template-obj)
 [![Bower](https://img.shields.io/bower/v/template-obj.svg?style=flat-square)](http://bower.io/search/?q=template-obj)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/tsuyoshiwada/template-obj/master/LICENSE)
 
 template strings in the javascript object.  
 lightweight utility module. (production file is 1.37KB)
