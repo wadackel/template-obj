@@ -1,16 +1,16 @@
 /*!
  * template-obj
  * 
- * @version 0.0.1
+ * @version 0.0.2
  * @license MIT
  * @author tsuyoshiwada
  * @url https://github.com/tsuyoshiwada/template-obj
  */
-(function(){
+(function(root){
   "use strict";
 
-  var root = this,
-      objectPrototype = Object.prototype;
+  var OBJECT = "object", STRING = "string", ARRAY = "array", FUNCTION = "function";
+  var objectPrototype = Object.prototype;
 
 
   function hasProp(obj, key){
@@ -21,12 +21,12 @@
   function is(type, obj){
     var clas = objectPrototype.toString.call(obj);
 
-    if( type === "array" ){
+    if( type === ARRAY ){
       return clas === "[object Array]";
 
-    }else if( type === "object" ){
+    }else if( type === OBJECT ){
       clas = typeof obj;
-      return clas === "function" || clas === "object" && !!obj && !is("array", obj);
+      return clas === FUNCTION || clas === OBJECT && !!obj && !is(ARRAY, obj);
 
     }else{
       clas = clas.slice(8, -1).toLowerCase();
@@ -36,14 +36,14 @@
 
 
   function clone(obj){
-    var _isArray = is("array", obj),
-        _isObject = is("object", obj);
+    var _isArray = is(ARRAY, obj),
+        _isObject = is(OBJECT, obj);
     if( !_isArray && !_isObject ) return undefined;
     var result = _isArray ? [] : {}, key, val;
     for( key in obj ){
       if( !hasProp(obj, key) ) continue;
       val = obj[key];
-      if( is("array", val) || is("object", val) ) val = clone(val);
+      if( is(ARRAY, val) || is(OBJECT, val) ) val = clone(val);
       result[key] = val;
     }
     return result;
@@ -53,12 +53,12 @@
   function each(obj, iterate, context){
     if( obj === null ) return obj;
     context = context || obj;
-    if( is("object", obj) ){
+    if( is(OBJECT, obj) ){
       for( var key in obj ){
         if( !hasProp(obj, key) ) continue;
         if( iterate.call(context, obj[key], key) === false ) break;
       }
-    }else if( is("array", obj) ){
+    }else if( is(ARRAY, obj) ){
       var i, length = obj.length;
       for( i = 0; i < length; i++ ){
         if( iterate.call(context, obj[i], i) === false ) break;
@@ -91,7 +91,7 @@
 
 
   function template(str, values){
-    if( !is("string", str) ) return str;
+    if( !is(STRING, str) ) return str;
     return str.replace(/\$\{(.*?)\}/g, function(all, key){
       var val = getValue(values, key);
       return val != null ? val : all;
@@ -102,10 +102,10 @@
   function templateObj(obj, rootObj){
     var results = clone(obj);
     
-    rootObj = is("object", rootObj) ? rootObj : results;
+    rootObj = is(OBJECT, rootObj) ? rootObj : results;
 
     each(results, function(val, key){
-      if( is("object", val) ){
+      if( is(OBJECT, val) ){
         results[key] = templateObj(val, rootObj);
       }else{
         results[key] = template(val, rootObj);
@@ -117,15 +117,15 @@
 
 
   // export modules
-  if( typeof module === "object" && typeof module.exports === "object" ){
+  if( typeof module === OBJECT && typeof module.exports === OBJECT ){
     module.exports = templateObj;
 
   /*global define */
-  }else if( typeof define === "function" && define.amd ){
+  }else if( typeof define === FUNCTION && define.amd ){
     define("template-obj", templateObj);
 
   }else{
     root.templateObj = templateObj;
   }
 
-}.call(this));
+}(this));

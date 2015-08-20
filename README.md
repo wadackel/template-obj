@@ -7,7 +7,7 @@ template-obj
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/tsuyoshiwada/template-obj/master/LICENSE)
 
 template strings in the javascript object.  
-lightweight utility module. (production file is 1.37KB)
+lightweight utility module. (production file is 1.29KB)
 
 
 

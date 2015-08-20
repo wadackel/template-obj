@@ -1,10 +1,10 @@
 {
   "name": "template-obj",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "template strings in the javascript object.",
   "keywords": [
     "string",
-    "tree",
+    "template",
     "object",
     "util",
     "server",
